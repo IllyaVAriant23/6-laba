@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void generateMatrix(int rows, int cols, float matrix[rows][cols]) {
+    int i, j;
+    srand(time(NULL));
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            matrix[i][j] = (float)(rand() % 201 - 100) / 10.0;
+        }
+    }
+}
+
+void printMatrix(int rows, int cols, float matrix[rows][cols]) {
+    int i, j;
+    for (i = 0; i < rows; i++) {
+        for (j = 0; j < cols; j++) {
+            printf("%.1f ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void findMinInRows(int rows, int cols, float matrix[rows][cols], float minValues[rows]) {
+    int i, j;
+    for (i = 0; i < rows; i++) {
+        float min = matrix[i][0];
+        for (j = 1; j < cols; j++) {
+            if (matrix[i][j] < min) {
+                min = matrix[i][j];
+            }
+        }
+        minValues[i] = min;
+    }
+}
+
+int main() {
+    int rows, cols;
+    printf("Введіть кількість рядків: ");
+    scanf("%d", &rows);
+    printf("Введіть кількість стовпців: ");
+    scanf("%d", &cols);
+    
+    float matrix[rows][cols];
+    float minValues[rows];
+    
+    generateMatrix(rows, cols, matrix);
+    
+    printf("Згенерована матриця:\n");
+    printMatrix(rows, cols, matrix);
+    
+    findMinInRows(rows, cols, matrix, minValues);
+    
+    printf("\nМінімальні елементи в кожному рядку:\n");
+    for (int i = 0; i < rows; i++) {
+        printf("%.1f ", minValues[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
