@@ -1,49 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-int main() {
-    int rows, cols;
-    
-    printf("Введіть кількість рядків: ");
-    scanf("%d", &rows);
-    
-    printf("Введіть кількість стовпців: ");
-    scanf("%d", &cols);
-    
-    int matrix[rows][cols];
-    int min_elements[rows];
-    
+void ctvorenamtric(int r, int c, int matrix[][c]) {
     srand(time(NULL));
-    
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            matrix[i][j] = rand() % 201 - 100;
+for (int i = 0; i < r; i++) {
+      for (int j = 0; j < c; j++) {
+       matrix[i][j] = rand() % 201 - 100;
         }
     }
-    
-    for (int i = 0; i < rows; i++) {
-        int min_element = matrix[i][0];
-        for (int j = 1; j < cols; j++) {
-            if (matrix[i][j] < min_element) {
-                min_element = matrix[i][j];
+}
+
+void nahodjena(int r, int c, int matrix[][c], int minimalnayelementy[]) {
+    for (int i = 0; i < r; i++) { int minimalnaya = matrix[i][0];
+    for (int j = 1; j < c; j++) {
+      if (matrix[i][j] < minimalnaya) {
+            minimalnaya = matrix[i][j];
             }
         }
-        min_elements[i] = min_element;
+        minimalnaya_elements[i] = minimalnaya;
     }
-    
-    printf("Матриця:\n");
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
+}
+
+void print_matrix(int r, int c, int matrix[][c]) {
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
             printf("%d\t", matrix[i][j]);
         }
-        printf("\n");
-    }
-    
-    printf("Мінімальні елементи в кожному рядку:\n");
-    for (int i = 0; i < rows; i++) {
-        printf("%d ", min_elements[i]);
-    }
-    
+        printf("\n");  }
+}
+
+void print_array(int size, int array[]) {
+    for (int i = 0; i < size; i++) {   printf("%d\t", array[i]);
+    } printf("\n");
+}
+int main() {
+    int r, c;
+    printf("Ведите r: ");
+    scanf("%d", &r);
+    printf("Ведите c: ");
+    scanf("%d", &c);
+    int matrix[r][c];
+    int minimalnaya_elements[r];
+    ctvorenamtric(r, c, matrix);
+    printf("\nЗгенерована матриця:\n");
+    print_matrix(r, c, matrix);
+    nahodjena(r, c, matrix, minimalnaya_elements);
+    printf("\nМінімальние елементи :\n");
+    print_array(r, minimalnaya_elements);
     return 0;
 }
