@@ -17,7 +17,7 @@ void nahodjena(int r, int c, int matrix[][c], int minimalnayelementy[]) {
             minimalnaya = matrix[i][j];
             }
         }
-        minimalnaya_elements[i] = minimalnaya;
+        minimalnayelementy[i] = minimalnaya;
     }
 }
 
@@ -35,9 +35,9 @@ void print_array(int size, int array[]) {
 }
 int main() {
     int r, c;
-    printf("Ведите r: ");
+    printf("Ведіть(вертикальні стовпці)");
     scanf("%d", &r);
-    printf("Ведите c: ");
+    printf("Ведіть (горизонталь стовпці)  ");
     scanf("%d", &c);
     int matrix[r][c];
     int minimalnaya_elements[r];
